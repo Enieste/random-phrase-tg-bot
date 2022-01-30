@@ -3,13 +3,13 @@ const fs = require('fs');
 
 const source = fs.readFileSync("./source/zavet.txt", 'utf-8');
 
-const token = '5207082607:AAFVOFQF8Ce-Rxm30RL2HqEavC35yBWR8cw';
+const token = process.env.BOT_TOKEN;
 
 const bot = new TelegramBot(token, {polling: true});
 
 const textArray = source.split('. ')
 
-const getRandomPhrase = () => textArray[Math.floor(Math.random()*textArray.length)];
+const getRandomPhrase = () => textArray[Math.floor(Math.random()*textArray.length)].trim();
 
 bot.on('message', (msg) => {
   const opts = {
