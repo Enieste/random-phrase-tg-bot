@@ -22,7 +22,9 @@ bot.on('message', (msg) => {
   };
   if (msg.text.toString().toLowerCase().includes(zavet)) {
     bot.sendMessage(msg.chat.id, `*Вы помянули Завет всуе. Получайте предсказание на сегодня:* "${getRandomPhrase(textArrayZavet)}"`, opts);
-  } else if (msg.text.toString().toLowerCase().includes(tagil)) {
+  }
+
+  if (msg.text.toString().toLowerCase().includes(tagil)) {
     bot.sendMessage(msg.chat.id, `*Тем временем в Тагиле:* "${getRandomPhrase(textArrayTagil)}"`, opts);
   }
 });
