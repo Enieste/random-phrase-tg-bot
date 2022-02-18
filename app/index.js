@@ -16,10 +16,18 @@ const textArrayTagil = sourceTagil.split('. ')
 
 const getRandomPhrase = (source) => source[Math.floor(Math.random()*source.length)].trim();
 
+const groupId = "-1001499183461";
+const testGroupId = "-1001652694885";
+
+const groupsIds = [groupId, testGroupId];
+
 bot.on('message', (msg) => {
   const opts = {
     parse_mode: 'Markdown'
   };
+
+  if(msg.chat.type !== "private" && groupsIds.indexOf(msg.chat.id.toString()) === -1) return;
+
   if (msg.text.toString().toLowerCase().includes(zavet)) {
     bot.sendMessage(msg.chat.id, `*Вы помянули Завет всуе. Получайте предсказание на сегодня:* "${getRandomPhrase(textArrayZavet)}"`, opts);
   }
