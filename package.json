@@ -4,7 +4,8 @@
   "description": "",
   "main": "app/index.js",
   "scripts": {
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "dev": "node app/index.js"
   },
   "dependencies": {
     "node-telegram-bot-api": "^0.56.0"
