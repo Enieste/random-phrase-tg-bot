@@ -6,9 +6,7 @@ const sourceTagil = fs.readFileSync('./source/tagil.txt', 'utf-8');
 const sourceBali = fs.readFileSync('./source/bali.txt', 'utf-8');
 const sourceWP = fs.readFileSync('./source/wp.txt', 'utf-8');
 
-const devToken = '6003667782:AAE-Ab-j0KFtCMyDi-WcxVOtk3pwfdSYWOk';
-
-const token = process.env.BOT_TOKEN || devToken;
+const token = process.env.BOT_TOKEN;
 
 const bot = new TelegramBot(token, {polling: true});
 
