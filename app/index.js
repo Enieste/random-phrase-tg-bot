@@ -13,11 +13,19 @@ const bot = new TelegramBot(token, {polling: true});
 const zavet = ['завет'];
 const tagil = ['кринж', 'срам'];
 const bali = ['бали', 'отпуск', 'отдых', 'эвфемизм', 'устал', 'заебал', 'ебал'];
-const wp = ['дыхание маткой', 'женская энергия', 'тренинг', 'лев'];
+const wp1 = ['дыхание маткой', 'женская энергия'];
+const wp2 = ['тренинг', 'лев', 'льва', 'тренинги'];
+
+const removePunctuation = (str) => str.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g,"");
 
 const isMentioned = (arrToCheck, msg) => {
-  const phraseToCheck = msg.text.toString().toLowerCase();
+  const phraseToCheck = removePunctuation(msg.text.toString().toLowerCase());
   return arrToCheck.some(word => phraseToCheck.includes(word));
+}
+
+const isMentionedExact = (arrToCheck, msg) => {
+  const phraseToCheck = removePunctuation(msg.text.toString().toLowerCase());
+  return arrToCheck.some(word => phraseToCheck.split(" ").includes(word));
 }
 
 const textArray = source => source.split('. ');
@@ -48,7 +56,7 @@ bot.on('message', (msg) => {
     bot.sendMessage(msg.chat.id, `*Устали? Вам путевка на Бали! Море шепчет:* «${getRandomPhrase(textArray(sourceBali))}»`, opts);
   }
 
-  if (isMentioned(wp, msg)) {
+  if (isMentioned(wp1, msg) || isMentionedExact(wp2, msg)) {
     bot.sendMessage(msg.chat.id, `*Качаем женскую энергию, девочки! Совет от коуча:* «${getRandomPhrase(textArray(sourceWP))}»`, opts);
   }
 
